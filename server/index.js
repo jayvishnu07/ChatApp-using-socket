@@ -15,10 +15,10 @@ io.on('connection', (socket)=>{
     console.log(`user id : ${socket.id}`);
     socket.on('join_room',(data)=>{
         socket.join(data)
-        console.log(`${socket.id} is connected with ${data}`);
+        // console.log(`${socket.id} is connected with ${data}`);
     })
     socket.on('send_message',(data)=>{
-        console.log(data);
+        // console.log(data);
         socket.to(data.roomId).emit('receive_message',data);
     })
 })

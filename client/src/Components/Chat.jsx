@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ScrollToBottom from 'react-scroll-to-bottom'
 import '../App.css'
+import {  RiSendPlaneFill } from 'react-icons/ri';
 
 const Chat = ({ socket, name, roomId }) => {
     const [msg, setMsg] = useState("")
@@ -8,7 +9,6 @@ const Chat = ({ socket, name, roomId }) => {
     const [id, setId] = useState(0)
     const sendMessage = async () => {
         setId((prev) => prev + 1)
-        console.log(id);
         if (msg !== "") {
             const payload = {
                 id: id,
@@ -33,7 +33,7 @@ const Chat = ({ socket, name, roomId }) => {
                 <p>{name}</p>
             </div>
             <div className="body">
-                <ScrollToBottom className='message-container' >
+                <ScrollToBottom className='message-container'  elementDomId="layoutContentContainer">
                     {
                         chatList.map((res) => {
                             return (
@@ -55,12 +55,9 @@ const Chat = ({ socket, name, roomId }) => {
             </div>
             <div className="chatting-div">
                 <input type="text" placeholder='Type here...' value={msg} onChange={(e) => { setMsg(e.target.value) }} onKeyDown={(e) => { e.key === "Enter" && sendMessage() }} />
-                <button onClick={sendMessage} > Send </button>
+                <p></p>
+                <button onClick={sendMessage} > <RiSendPlaneFill color='#ffffff' /> </button>
             </div>
-            
-            <div className="footer">
-            </div>
-
         </div>
     )
 }
